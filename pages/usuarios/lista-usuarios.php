@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include '../../database/database.php';
+
 // Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     // Redirige a la página de inicio de sesión o maneja la situación según sea necesario
@@ -23,7 +25,7 @@ $usuario = $_SESSION['usuario'];
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ISIL</title>
+    <title>SIL</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
     <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
@@ -46,10 +48,8 @@ $usuario = $_SESSION['usuario'];
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img
-                        src="../../images/logo.png" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img
-                        src="../../images/logosidebard.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img src="../../images/logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img src="../../images/logosidebard.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -71,8 +71,7 @@ $usuario = $_SESSION['usuario'];
                             }
                             ?>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                            aria-labelledby="profileDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                             <a class="dropdown-item" href="../profile/profile.php">
                                 <i class="ti-settings text-primary"></i>
                                 Editar Perfil
@@ -84,8 +83,7 @@ $usuario = $_SESSION['usuario'];
                         </div>
                     </li>
                 </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                    data-toggle="offcanvas">
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                     <span class="icon-menu"></span>
                 </button>
             </div>
@@ -102,8 +100,7 @@ $usuario = $_SESSION['usuario'];
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Usuarios</span>
                             <i class="menu-arrow"></i>
@@ -114,7 +111,8 @@ $usuario = $_SESSION['usuario'];
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./perfil-usuarios.php">Editar
                                         usuarios</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a>
+                                </li>
                                 <li class="nav-item"> <a class="nav-link" href="./gestion-usuarios.php">Gestión de
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./lista-usuarios.php">Lista de
@@ -123,8 +121,7 @@ $usuario = $_SESSION['usuario'];
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false"
-                            aria-controls="#cursos">
+                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false" aria-controls="#cursos">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Cursos</span>
                             <i class="menu-arrow"></i>
@@ -135,12 +132,61 @@ $usuario = $_SESSION['usuario'];
                                         Cursos</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../cursos/lista-cursos.php">Lista de
                                         Cursos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../cursos/editar-cursos.php">Editar
+                                        Cursos</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false"
-                            aria-controls="#sedes">
+                        <a class="nav-link" data-toggle="collapse" href="#modulos" aria-expanded="false" aria-controls="#modulos">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Módulos</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="modulos">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/crear-modulos.php">Registrar
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/lista-modulos.php">Lista de
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/editar-modulos.php">Editar
+                                        Módulos</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#matriculas" aria-expanded="false" aria-controls="#matriculas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Matrículas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="matriculas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/registro-matricula.php">Matricular
+                                        alumno</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/lista-matriculas.php">Lista Matriculas</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/editar-matriculas.php">Editar
+                                        Matriculas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#notas" aria-expanded="false" aria-controls="#notas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Notas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="notas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../notas/registrar-nota.php">Registrar Notas</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../notas/lista-notas.php">Lista de Notas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false" aria-controls="#sedes">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Sedes</span>
                             <i class="menu-arrow"></i>
@@ -171,7 +217,52 @@ $usuario = $_SESSION['usuario'];
                         <div class="card-body">
                             <br>
                             <div class="d-flex justify-content-between">
-                                <h4 class="card-title">Lista de Sedes</h4>
+                                <h4 class="card-title">Lista de Usuarios Registrados</h4>
+                                <div class="d-flex">
+                                    <form action="" method="post">
+                                        <button type="submit" value="Todos" name="operaciones" class="btn btn-primary mx-2">Ver Todos</button>
+                                    </form>
+                                    <form action="" method="post" class="d-flex ">
+                                        <?php
+                                        $RolId = $_SESSION['usuario']['Rol_id'];
+
+                                        if ($RolId == 4) {
+                                            echo '<select name="fsedes" class="form-control mx-2" required>';
+
+                                            $consulta = "SELECT * FROM Sedes";
+
+                                            if ($resultado = $conexion->query($consulta)) {
+                                                echo '<option value="0">Elige una opción</option>';
+
+                                                while ($fila = $resultado->fetch_assoc()) {
+                                                    echo '<option value="' . $fila['Sede_Id'] . '">' . $fila['Sede_nombre'] . '</option>';
+                                                }
+                                            } else {
+                                                echo "No existe";
+                                            }
+
+                                            echo '</select>';
+                                        }
+                                        ?>
+
+                                        <select name="froles" class="form-control" required>
+                                            <?php
+                                            $consulta = "SELECT * FROM Roles";
+                                            if ($resultado = $conexion->query($consulta)) {
+                                                echo '<option value="0">Elige una opción</option>';
+
+                                                while ($fila = $resultado->fetch_assoc()) {
+                                                    echo '<option value="' . $fila['Rol_id'] . '">' . $fila['Rol_nombre'] . '</option>';
+                                                }
+                                            } else {
+                                                echo "No existe";
+                                            }
+                                            ?>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary mx-2" name="operaciones" value="Filtro">Filtrar</button>
+                                    </form>
+                                </div>
+
                             </div>
                             <br>
                             <div class="table-responsive">
@@ -191,6 +282,9 @@ $usuario = $_SESSION['usuario'];
                                                 Apellidos
                                             </th>
                                             <th>
+                                                Status
+                                            </th>
+                                            <th>
                                                 Rol
                                             </th>
                                             <th>
@@ -200,39 +294,66 @@ $usuario = $_SESSION['usuario'];
                                     </thead>
                                     <tbody>
                                         <?php
-                                        include '../../database/database.php';
+                                        if (isset($_POST['operaciones'])) {
+                                            if ($_POST['operaciones'] == 'Todos') {
+                                                $sedeId = $_SESSION['usuario']['Sede_Id'];
+                                                $RolId = $_SESSION['usuario']['Rol_id'];
 
-                                        $consulta = "SELECT * FROM Usuarios";
-                                        if ($resultado = $conexion->query($consulta)) {
-                                            $contador = 1;
-                                            while ($fila = $resultado->fetch_assoc()) {
-                                                switch ($fila['Rol_id']) {
-                                                    case 1:
-                                                        $rol = "Administrador";
-                                                        break;
-                                                    case 2:
-                                                        $rol = "Profesor";
-                                                        break;
-                                                    case 3:
-                                                        $rol = "Estudiante";
-                                                        break;
+                                                if ($RolId == 1) {
+                                                    $consulta = "SELECT * FROM Usuarios where Sede_Id = $sedeId";
+                                                } else if ($RolId == 4) {
+                                                    $consulta = "SELECT * FROM Usuarios";
+                                                } else {
+                                                    $consulta = "";
                                                 }
 
-                                                switch ($fila['Sede_Id']) {
-                                                    case 1:
-                                                        $sede = "Chincha";
-                                                        break;
-                                                    case 2:
-                                                        $sede = "Cañete";
-                                                        break;
-                                                    case 3:
-                                                        $sede = "Ica";
-                                                        break;
-                                                    case 3:
-                                                        $sede = "Cajamarca";
-                                                        break;
-                                                }
-                                                echo '
+                                                if ($resultado = $conexion->query($consulta)) {
+                                                    $contador = 1;
+                                                    while ($fila = $resultado->fetch_assoc()) {
+                                                        switch ($fila['Usuario_status']) {
+                                                            case 0:
+                                                                $status = "Deshabilitado";
+                                                                break;
+                                                            case 1:
+                                                                $status = "Habilitado";
+                                                                break;
+                                                        }
+                                                        switch ($fila['Rol_id']) {
+                                                            case 1:
+                                                                $rol = "Asistente";
+                                                                break;
+                                                            case 2:
+                                                                $rol = "Profesor";
+                                                                break;
+                                                            case 3:
+                                                                $rol = "Estudiante";
+                                                                break;
+                                                            case 4:
+                                                                $rol = "Administrador";
+                                                                break;
+                                                        }
+
+                                                        switch ($fila['Sede_Id']) {
+                                                            case 1:
+                                                                $sede = "Chincha";
+                                                                break;
+                                                            case 2:
+                                                                $sede = "Cañete";
+                                                                break;
+                                                            case 3:
+                                                                $sede = "Pisco";
+                                                                break;
+                                                            case 4:
+                                                                $sede = "Ica";
+                                                                break;
+                                                            case 5:
+                                                                $sede = "Cajamarca";
+                                                                break;
+                                                            case 6:
+                                                                $sede = "Arequipa";
+                                                                break;
+                                                        }
+                                                        echo '
                                                         <tr>
                                                         <td>
                                                         ' . $contador . '
@@ -247,6 +368,9 @@ $usuario = $_SESSION['usuario'];
                                                         ' . $fila['Usuario_apellidos'] . '
                                                         </td>
                                                         <td>
+                                                        ' . $status . '
+                                                        </td>
+                                                        <td>
                                                         ' . $rol . '
                                                         </td>
                                                         <td>
@@ -254,10 +378,108 @@ $usuario = $_SESSION['usuario'];
                                                         </td>
                                                     </tr>
                                                 ';
-                                                $contador++;
+                                                        $contador++;
+                                                    }
+                                                } else {
+                                                    echo "No existe";
+                                                }
                                             }
-                                        } else {
-                                            echo "No existe";
+
+                                            if ($_POST['operaciones'] == 'Filtro') {
+
+                                                $fsedes = '';
+                                                $froles = '';
+                                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                                    $fsedes = isset($_POST['fsedes']) ? $_POST['fsedes'] : '';
+                                                    $froles = isset($_POST['froles']) ? $_POST['froles'] : '';
+                                                }
+
+                                                if ($RolId == 1) {
+                                                    $consulta = "SELECT * FROM Usuarios where Sede_Id = $sedeId and Rol_id = $froles";
+                                                } else if ($RolId == 4) {
+                                                    $consulta = "SELECT * FROM Usuarios where Sede_Id = $fsedes and Rol_id = $froles";
+                                                } else {
+                                                    $consulta = "";
+                                                }
+
+
+                                                if ($resultado = $conexion->query($consulta)) {
+                                                    $contador = 1;
+                                                    while ($fila = $resultado->fetch_assoc()) {
+                                                        switch ($fila['Usuario_status']) {
+                                                            case 0:
+                                                                $status = "Deshabilitado";
+                                                                break;
+                                                            case 1:
+                                                                $status = "Habilitado";
+                                                                break;
+                                                        }
+                                                        switch ($fila['Rol_id']) {
+                                                            case 1:
+                                                                $rol = "Asistente";
+                                                                break;
+                                                            case 2:
+                                                                $rol = "Profesor";
+                                                                break;
+                                                            case 3:
+                                                                $rol = "Estudiante";
+                                                                break;
+                                                            case 4:
+                                                                $rol = "Administrador";
+                                                                break;
+                                                        }
+
+                                                        switch ($fila['Sede_Id']) {
+                                                            case 1:
+                                                                $sede = "Chincha";
+                                                                break;
+                                                            case 2:
+                                                                $sede = "Cañete";
+                                                                break;
+                                                            case 3:
+                                                                $sede = "Pisco";
+                                                                break;
+                                                            case 4:
+                                                                $sede = "Ica";
+                                                                break;
+                                                            case 5:
+                                                                $sede = "Cajamarca";
+                                                                break;
+                                                            case 6:
+                                                                $sede = "Arequipa";
+                                                                break;
+                                                        }
+                                                        echo '
+                                                        <tr>
+                                                        <td>
+                                                        ' . $contador . '
+                                                        </td>
+                                                        <td>
+                                                        ' . $fila['Usuario_dni'] . '
+                                                        </td>
+                                                        <td>
+                                                        ' . $fila['Usuario_nombres'] . '
+                                                        </td>
+                                                        <td>
+                                                        ' . $fila['Usuario_apellidos'] . '
+                                                        </td>
+                                                        <td>
+                                                        ' . $status . '
+                                                        </td>
+                                                        <td>
+                                                        ' . $rol . '
+                                                        </td>
+                                                        <td>
+                                                        ' . $sede . '
+                                                        </td>
+                                                    </tr>
+                                                ';
+                                                        $contador++;
+                                                    }
+                                                } else {
+                                                    echo "No existe";
+                                                }
+                                            }
                                         }
                                         ?>
                                     </tbody>
@@ -271,10 +493,6 @@ $usuario = $_SESSION['usuario'];
     </div>
     <!-- plugins:js -->
     <script src="../../vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
     <script src="../../js/off-canvas.js"></script>
     <script src="../../js/hoverable-collapse.js"></script>
     <script src="../../js/template.js"></script>

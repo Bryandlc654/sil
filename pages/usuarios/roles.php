@@ -7,14 +7,10 @@ if (!isset($_SESSION['usuario'])) {
     header("Location: ../../index.php");
     exit();
 }
-
 // Ahora puedes acceder a la información del usuario usando $_SESSION['usuario']
 $usuario = $_SESSION['usuario'];
 
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -46,10 +42,8 @@ $usuario = $_SESSION['usuario'];
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img
-                        src="../../images/logo.png" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img
-                        src="../../images/logosidebard.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img src="../../images/logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img src="../../images/logosidebard.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -71,8 +65,7 @@ $usuario = $_SESSION['usuario'];
                             }
                             ?>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                            aria-labelledby="profileDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                             <a class="dropdown-item" href="../profile/profile.php">
                                 <i class="ti-settings text-primary"></i>
                                 Editar Perfil
@@ -84,8 +77,7 @@ $usuario = $_SESSION['usuario'];
                         </div>
                     </li>
                 </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                    data-toggle="offcanvas">
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                     <span class="icon-menu"></span>
                 </button>
             </div>
@@ -102,8 +94,7 @@ $usuario = $_SESSION['usuario'];
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Usuarios</span>
                             <i class="menu-arrow"></i>
@@ -114,7 +105,8 @@ $usuario = $_SESSION['usuario'];
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./perfil-usuarios.php">Editar
                                         usuarios</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a>
+                                </li>
                                 <li class="nav-item"> <a class="nav-link" href="./gestion-usuarios.php">Gestión de
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./lista-usuarios.php">Lista de
@@ -123,8 +115,7 @@ $usuario = $_SESSION['usuario'];
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false"
-                            aria-controls="#cursos">
+                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false" aria-controls="#cursos">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Cursos</span>
                             <i class="menu-arrow"></i>
@@ -135,12 +126,61 @@ $usuario = $_SESSION['usuario'];
                                         Cursos</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../cursos/lista-cursos.php">Lista de
                                         Cursos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../cursos/editar-cursos.php">Editar
+                                        Cursos</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false"
-                            aria-controls="#sedes">
+                        <a class="nav-link" data-toggle="collapse" href="#modulos" aria-expanded="false" aria-controls="#modulos">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Módulos</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="modulos">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/crear-modulos.php">Registrar
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/lista-modulos.php">Lista de
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/editar-modulos.php">Editar
+                                        Módulos</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#matriculas" aria-expanded="false" aria-controls="#matriculas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Matrículas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="matriculas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/registro-matricula.php">Matricular
+                                        alumno</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/lista-matriculas.php">Lista Matriculas</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/editar-matriculas.php">Editar
+                                        Matriculas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#notas" aria-expanded="false" aria-controls="#notas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Notas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="notas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../notas/registrar-nota.php">Registrar Notas</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../notas/lista-notas.php">Lista de Notas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false" aria-controls="#sedes">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Sedes</span>
                             <i class="menu-arrow"></i>
@@ -175,8 +215,7 @@ $usuario = $_SESSION['usuario'];
                                 <div class="d-flex ">
                                     <form action="" method="post" class="d-flex">
                                         <input type="text" name="dni" placeholder="Ingresar DNI" class="form-control" />
-                                        <button type="submit" value="Buscar" name="operaciones"
-                                            class="btn btn-primary mx-2">Buscar</button>
+                                        <button type="submit" value="Buscar" name="operaciones" class="btn btn-primary mx-2">Buscar</button>
                                     </form>
                                 </div>
                             </div>
@@ -215,19 +254,24 @@ $usuario = $_SESSION['usuario'];
                                         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             $dni = isset($_POST['dni']) ? $_POST['dni'] : '';
                                             $rol = isset($_POST['rol']) ? $_POST['rol'] : '';
-
                                         }
 
                                         if (isset($_POST['operaciones'])) {
                                             if ($_POST['operaciones'] == 'Buscar') {
-                                                $consulta = "SELECT * FROM Usuarios where Usuario_dni ='$dni'";
+                                                $SedeId = $_SESSION['usuario']['Sede_Id'];
+                                                $RolId = $_SESSION['usuario']['Rol_id'];
+                                                if ($RolId == 4) {
+                                                    $consulta = "SELECT * FROM Usuarios WHERE Usuario_dni='$dni'";
+                                                } else {
+                                                    $consulta = "SELECT * FROM Usuarios WHERE Usuario_dni='$dni' and Sede_Id ='$SedeId'";
+                                                }
                                                 if ($resultado = $conexion->query($consulta)) {
                                                     while ($fila = $resultado->fetch_assoc()) {
                                                         $dni = $fila['Usuario_dni'];
                                                         $rolactual = $fila['Rol_id'];
                                                         switch ($rolactual) {
                                                             case 1:
-                                                                $rolresultado = 'Administrador';
+                                                                $rolresultado = 'Asistente';
                                                                 break;
                                                             case 2:
                                                                 $rolresultado = 'Profesor';
@@ -235,37 +279,41 @@ $usuario = $_SESSION['usuario'];
                                                             case 3:
                                                                 $rolresultado = 'Estudiante';
                                                                 break;
+                                                            case 4:
+                                                                $rolresultado = 'Administrador';
+                                                                break;
                                                         }
                                                         echo '
-                                                        <tr>
-                                                        <td>
-                                                        ' . $fila['Usuario_dni'] . '
-                                                        </td>
-                                                        <td>
-                                                        ' . $fila['Usuario_apellidos'] . '
-                                                        </td>
-                                                        <td>
-                                                        ' . $fila['Usuario_nombres'] . '
-                                                        </td>
-                                                        <td>
-                                                        ' . $rolresultado . '
-                                                        </td>
-                                                        <td>
-                                                        <div class="d-flex">
-                                                        <form action="' . $_SERVER['PHP_SELF'] . '" method="post" class="d-flex">
-                                                        <input type="hidden" name="usuario_dni" value="' . $dni . '">
-                                                            <select name="rol" class="form-control">
-                                                                <option>Elegir Rol</option>
-                                                                <option value="3">Estudiante</option>
-                                                                <option value="2">Profesor</option>
-                                                                <option value="1">Administrador</option>
-                                                            </select>
-                                                            <button type="submit" name="operaciones" value="actualizar" class="btn btn-success mx-2">Asignar</button>
-                                                        </form>
-                                                    </div>
-                                                        </td>
-                                                    </tr>
-                                                ';
+        <tr>
+            <td>' . $fila['Usuario_dni'] . '</td>
+            <td>' . $fila['Usuario_apellidos'] . '</td>
+            <td>' . $fila['Usuario_nombres'] . '</td>
+            <td>' . $rolresultado . '</td>
+            <td>
+                <div class="d-flex">
+                    <form action="' . $_SERVER['PHP_SELF'] . '" method="post" class="d-flex">
+                        <input type="hidden" name="usuario_dni" value="' . $dni . '">';
+                                                        if ($RolId == 4) {
+                                                            echo '<select name="rol" class="form-control">
+                                    <option>Elegir Rol</option>
+                                    <option value="3">Estudiante</option>
+                                    <option value="2">Profesor</option>
+                                    <option value="1">Asistente</option>
+                                    <option value="4">Administrador</option>
+                                  </select>';
+                                                        } else {
+                                                            echo '<select name="rol" class="form-control">
+                                    <option>Elegir Rol</option>
+                                    <option value="3">Estudiante</option>
+                                    <option value="2">Profesor</option>
+                                  </select>';
+                                                        }
+
+                                                        echo '<button type="submit" name="operaciones" value="actualizar" class="btn btn-success mx-2">Asignar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>';
                                                     }
                                                 } else {
                                                     echo "No existe";

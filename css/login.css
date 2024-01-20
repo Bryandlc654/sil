@@ -36,7 +36,7 @@ body {
 .right {
     flex: 1;
     transition: 1s;
-    background-image: url('../images/home.png');
+    background-image: url('../images/home.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -164,11 +164,11 @@ body {
 }
 
 
-.img-perfil{
+.img-perfil {
     object-fit: cover;
 }
 
-.img_dashboard{
+.img_dashboard {
     height: 18rem;
     object-fit: contain;
     float: left;

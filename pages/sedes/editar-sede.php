@@ -74,7 +74,6 @@ if (isset($_POST['operaciones'])) {
             }
         }
     }
-
 }
 ?>
 
@@ -87,7 +86,7 @@ if (isset($_POST['operaciones'])) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ISIL</title>
+    <title>SIL</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
     <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
@@ -110,10 +109,8 @@ if (isset($_POST['operaciones'])) {
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img
-                        src="../../images/logo.png" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img
-                        src="../../images/logosidebard.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img src="../../images/logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img src="../../images/logosidebard.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -135,8 +132,7 @@ if (isset($_POST['operaciones'])) {
                             }
                             ?>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                            aria-labelledby="profileDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                             <a class="dropdown-item" href="../profile/profile.php">
                                 <i class="ti-settings text-primary"></i>
                                 Editar Perfil
@@ -148,8 +144,7 @@ if (isset($_POST['operaciones'])) {
                         </div>
                     </li>
                 </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                    data-toggle="offcanvas">
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                     <span class="icon-menu"></span>
                 </button>
             </div>
@@ -166,23 +161,20 @@ if (isset($_POST['operaciones'])) {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Usuarios</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../usuarios/registrar-usuarios.php">Registrar
+                                <li class="nav-item"> <a class="nav-link" href="../usuarios/registrar-usuarios.php">Registrar
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../usuarios/perfil-usuarios.php">Editar
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../usuarios/roles.php">Editar Rol</a>
                                 </li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="../usuarios/gestion-usuarios.php">Gestión de
+                                <li class="nav-item"> <a class="nav-link" href="../usuarios/gestion-usuarios.php">Gestión de
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../usuarios/lista-usuarios.php">Lista de
                                         usuarios</a></li>
@@ -190,8 +182,7 @@ if (isset($_POST['operaciones'])) {
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false"
-                            aria-controls="#cursos">
+                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false" aria-controls="#cursos">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Cursos</span>
                             <i class="menu-arrow"></i>
@@ -202,12 +193,61 @@ if (isset($_POST['operaciones'])) {
                                         Cursos</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../cursos/lista-cursos.php">Lista de
                                         Cursos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../cursos/editar-cursos.php">Editar
+                                        Cursos</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false"
-                            aria-controls="#sedes">
+                        <a class="nav-link" data-toggle="collapse" href="#modulos" aria-expanded="false" aria-controls="#modulos">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Módulos</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="modulos">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/crear-modulos.php">Registrar
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/lista-modulos.php">Lista de
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/editar-modulos.php">Editar
+                                        Módulos</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#matriculas" aria-expanded="false" aria-controls="#matriculas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Matrículas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="matriculas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/registro-matricula.php">Matricular
+                                        alumno</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/lista-matriculas.php">Lista Matriculas</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/editar-matriculas.php">Editar
+                                        Matriculas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#notas" aria-expanded="false" aria-controls="#notas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Notas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="notas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../notas/registrar-nota.php">Registrar Notas</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../notas/lista-notas.php">Lista de Notas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false" aria-controls="#sedes">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Sedes</span>
                             <i class="menu-arrow"></i>
@@ -257,8 +297,7 @@ if (isset($_POST['operaciones'])) {
                                                 <option value="6">
                                                     Arequipa</option>
                                             </select>
-                                            <button type="submit" value="Buscar" name="operaciones"
-                                                class="btn btn-primary mx-2">Buscar</button>
+                                            <button type="submit" value="Buscar" name="operaciones" class="btn btn-primary mx-2">Buscar</button>
                                         </form>
                                     </div>
                                 </div>
@@ -272,8 +311,7 @@ if (isset($_POST['operaciones'])) {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Nombre</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nombre_sede"
-                                                        value="<?php echo $nombre_sede; ?>" />
+                                                    <input type="text" class="form-control" name="nombre_sede" value="<?php echo $nombre_sede; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -281,8 +319,7 @@ if (isset($_POST['operaciones'])) {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Dirección</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="direccion"
-                                                        value="<?php echo $direccion; ?>" />
+                                                    <input type="text" class="form-control" name="direccion" value="<?php echo $direccion; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -292,8 +329,7 @@ if (isset($_POST['operaciones'])) {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Institución</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="institucion"
-                                                        value="<?php echo $institucion; ?>" />
+                                                    <input type="text" class="form-control" name="institucion" value="<?php echo $institucion; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -301,8 +337,7 @@ if (isset($_POST['operaciones'])) {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Distrito</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="distrito"
-                                                        value="<?php echo $distrito; ?>" />
+                                                    <input type="text" class="form-control" name="distrito" value="<?php echo $distrito; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -312,8 +347,7 @@ if (isset($_POST['operaciones'])) {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Provincia</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="provincia"
-                                                        value="<?php echo $provincia; ?>" />
+                                                    <input type="text" class="form-control" name="provincia" value="<?php echo $provincia; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -321,14 +355,12 @@ if (isset($_POST['operaciones'])) {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Departamento</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="departamento"
-                                                        value="<?php echo $departamento; ?>" />
+                                                    <input type="text" class="form-control" name="departamento" value="<?php echo $departamento; ?>" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" name="operaciones" value="Actualizar"
-                                        class="btn btn-primary mr-2">
+                                    <button type="submit" name="operaciones" value="Actualizar" class="btn btn-primary mr-2">
                                         Actualizar
                                     </button>
                                 </form>

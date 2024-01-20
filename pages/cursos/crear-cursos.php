@@ -20,11 +20,15 @@ $nmodulos = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nomcurso = isset($_POST['nomcurso']) ? $_POST['nomcurso'] : '';
-    $fcreacion = isset($_POST['fcreacion']) ? $_POST['nmodulos'] : '';
+    $nmodulos = isset($_POST['nmodulos']) ? $_POST['nmodulos'] : '';
 
+    $consulta_total = $conexion->query("SELECT COUNT(*) as total FROM Cursos");
+    $total_registros = $consulta_total->fetch_assoc()['total'];
+
+    $nuevo_codigo = 'csil-' . str_pad($total_registros + 1, 2, '0', STR_PAD_LEFT);
 
     if ($conexion) {
-        $consulta = $conexion->query("INSERT INTO Cursos(Curso_nombre,Curso_Nmodulos) VALUES('$nomcurso','$fcreacion')");
+        $consulta = $conexion->query("INSERT INTO Cursos(Curso_Codigo,Curso_nombre,Curso_Nmodulos) VALUES('$nuevo_codigo','$nomcurso','$nmodulos')");
         if ($consulta) {
             $mensaje = "✅ Registrado con éxito";
         } else {
@@ -43,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ISIL</title>
+    <title>SIL</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../vendors/feather/feather.css">
     <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
@@ -130,12 +134,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="./registrar-usuarios.php">Registrar
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="../usuarios/registrar-usuarios.php">Registrar
                                         usuarios</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="./perfil-usuarios.php">Editar
+                                <li class="nav-item"> <a class="nav-link" href="../usuarios/perfil-usuarios.php">Editar
                                         usuarios</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="./gestion-usuarios.php">Gestión de
+                                <li class="nav-item"> <a class="nav-link" href="../usuarios/roles.php">Editar Rol</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="../usuarios/gestion-usuarios.php">Gestión de
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../usuarios/lista-usuarios.php">Lista de
                                         usuarios</a></li>
@@ -155,6 +162,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Cursos</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./lista-cursos.php">Lista de
                                         Cursos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="./editar-cursos.php">Editar
+                                        Cursos</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#modulos" aria-expanded="false"
+                            aria-controls="#modulos">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Módulos</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="modulos">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/crear-modulos.php">Registrar
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/lista-modulos.php">Lista de
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/editar-modulos.php">Editar
+                                        Módulos</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#matriculas" aria-expanded="false"
+                            aria-controls="#matriculas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Matrículas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="matriculas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="../matriculas/registro-matricula.php">Matricular
+                                        alumno</a></li>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="../matriculas/lista-matriculas.php">Lista Matriculas</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link"
+                                        href="../matriculas/editar-matriculas.php">Editar
+                                        Matriculas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#notas" aria-expanded="false"
+                            aria-controls="#notas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Notas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="notas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link"   
+                                        href="../notas/registrar-nota.php">Registrar Notas</a></li>
+                                <li class="nav-item"> <a class="nav-link"   
+                                        href="../notas/lista-notas.php">Lista de Notas</a></li>
                             </ul>
                         </div>
                     </li>

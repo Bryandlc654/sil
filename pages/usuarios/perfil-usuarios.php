@@ -46,7 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['operaciones'])) {
         if ($_POST['operaciones'] == 'Buscar') {
             if ($conexion) {
-                $consulta = $conexion->query("SELECT * FROM Usuarios WHERE Usuario_dni='$dni'");
+                $SedeId = $_SESSION['usuario']['Sede_Id'];
+                $RolId = $_SESSION['usuario']['Rol_id'];
+                if ($RolId == 4) {
+                    $consulta = $conexion->query("SELECT * FROM Usuarios WHERE Usuario_dni='$dni'");
+                } else {
+                    $consulta = $conexion->query("SELECT * FROM Usuarios WHERE Usuario_dni='$dni' and Sede_Id ='$SedeId'");
+                }
+
 
                 if ($datos = $consulta->fetch_assoc()) {
                     $dni = $datos['Usuario_dni'];
@@ -177,10 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img
-                        src="../../images/logo.png" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img
-                        src="../../images/logosidebard.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img src="../../images/logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img src="../../images/logosidebard.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -202,9 +207,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                             ?>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                            aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="./profile.php">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="../profile/profile.php">
                                 <i class="ti-settings text-primary"></i>
                                 Editar Perfil
                             </a>
@@ -215,8 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </li>
                 </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                    data-toggle="offcanvas">
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                     <span class="icon-menu"></span>
                 </button>
             </div>
@@ -233,8 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Usuarios</span>
                             <i class="menu-arrow"></i>
@@ -245,7 +247,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./perfil-usuarios.php">Editar
                                         usuarios</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a>
+                                </li>
                                 <li class="nav-item"> <a class="nav-link" href="./gestion-usuarios.php">Gestión de
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./lista-usuarios.php">Lista de
@@ -254,8 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false"
-                            aria-controls="#cursos">
+                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false" aria-controls="#cursos">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Cursos</span>
                             <i class="menu-arrow"></i>
@@ -266,12 +268,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Cursos</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../cursos/lista-cursos.php">Lista de
                                         Cursos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../cursos/editar-cursos.php">Editar
+                                        Cursos</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false"
-                            aria-controls="#sedes">
+                        <a class="nav-link" data-toggle="collapse" href="#modulos" aria-expanded="false" aria-controls="#modulos">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Módulos</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="modulos">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/crear-modulos.php">Registrar
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/lista-modulos.php">Lista de
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/editar-modulos.php">Editar
+                                        Módulos</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#matriculas" aria-expanded="false" aria-controls="#matriculas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Matrículas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="matriculas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/registro-matricula.php">Matricular
+                                        alumno</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/lista-matriculas.php">Lista Matriculas</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/editar-matriculas.php">Editar
+                                        Matriculas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#notas" aria-expanded="false" aria-controls="#notas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Notas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="notas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../notas/registrar-nota.php">Registrar Notas</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../notas/lista-notas.php">Lista de Notas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false" aria-controls="#sedes">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Sedes</span>
                             <i class="menu-arrow"></i>
@@ -288,7 +339,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./profile.php">
+                        <a class="nav-link" href="../profile/profile.php">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Editar Perfil</span>
                         </a>
@@ -305,10 +356,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <h4 class="card-title">Editar Información de Usuarios</h4>
                                     <div class="d-flex ">
                                         <form action="" method="post" class="d-flex">
-                                            <input type="text" name="dni" placeholder="Ingresar DNI"
-                                                class="form-control" />
-                                            <button type="submit" value="Buscar" name="operaciones"
-                                                class="btn btn-primary mx-2">Buscar</button>
+                                            <input type="text" name="dni" placeholder="Ingresar DNI" class="form-control" />
+                                            <button type="submit" value="Buscar" name="operaciones" class="btn btn-primary mx-2">Buscar</button>
                                         </form>
                                     </div>
                                 </div>
@@ -321,8 +370,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Dni</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="dni" required
-                                                        value="<?php echo $dni; ?>" />
+                                                    <input type="text" class="form-control" name="dni" required value="<?php echo $dni; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -330,8 +378,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Fecha de Registro</label>
                                                 <div class="col-sm-9">
-                                                    <input type="date" class="form-control" name="fcreacion" required
-                                                        value="<?php echo $fcreacion; ?>" />
+                                                    <input type="date" class="form-control" name="fcreacion" required value="<?php echo $fcreacion; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -341,8 +388,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Apellidos</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="apellidos" required
-                                                        value="<?php echo $apellidos; ?>" />
+                                                    <input type="text" class="form-control" name="apellidos" required value="<?php echo $apellidos; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -350,8 +396,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Nombres</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="nombres" required
-                                                        value="<?php echo $nombres; ?>" />
+                                                    <input type="text" class="form-control" name="nombres" required value="<?php echo $nombres; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -374,8 +419,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
                                                 <div class="col-sm-9">
-                                                    <input type="date" class="form-control" name="fnacimiento" required
-                                                        value="<?php echo $fnacimiento; ?>" />
+                                                    <input type="date" class="form-control" name="fnacimiento" value="<?php echo $fnacimiento; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -388,9 +432,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Dirección</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Av. / Cl. / Jr. / Psje. / CP. / AH."
-                                                        name="direccion" value="<?php echo $direccion; ?>" />
+                                                    <input type="text" class="form-control" placeholder="Av. / Cl. / Jr. / Psje. / CP. / AH." name="direccion" value="<?php echo $direccion; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -398,8 +440,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Distrito</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="distrito"
-                                                        value="<?php echo $distrito; ?>" />
+                                                    <input type="text" class="form-control" name="distrito" value="<?php echo $distrito; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -409,8 +450,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Provincia</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="provincia"
-                                                        value="<?php echo $provincia; ?>" />
+                                                    <input type="text" class="form-control" name="provincia" value="<?php echo $provincia; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -418,8 +458,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Departamento</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" name="departamento"
-                                                        value="<?php echo $departamento; ?>" />
+                                                    <input type="text" class="form-control" name="departamento" value="<?php echo $departamento; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -429,8 +468,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Celular</label>
                                                 <div class="col-sm-9">
-                                                    <input type="phone" class="form-control" name="celular" required
-                                                        value="<?php echo $celular; ?>" />
+                                                    <input type="phone" class="form-control" name="celular" required value="<?php echo $celular; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -438,8 +476,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Correo</label>
                                                 <div class="col-sm-9">
-                                                    <input type="email" class="form-control" name="correo"
-                                                        value="<?php echo $correo; ?>" />
+                                                    <input type="email" class="form-control" name="correo" value="<?php echo $correo; ?>" />
                                                 </div>
                                             </div>
                                         </div>
@@ -452,8 +489,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Foto</label>
                                                 <div class="col-sm-9">
-                                                    <input type="file" class="form-control file-upload-info"
-                                                        name="foto">
+                                                    <input type="file" class="form-control file-upload-info" name="foto">
                                                 </div>
                                             </div>
                                         </div>
@@ -461,16 +497,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Rol de Usuario</label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control" name="rol" required>
-                                                        <option <?php echo ($rol == '' ? 'selected' : ''); ?>>Elige una
-                                                            opción</option>
-                                                        <option value="3" <?php echo ($rol == '3' ? 'selected' : ''); ?>>
-                                                            Estudiante</option>
-                                                        <option value="2" <?php echo ($rol == '2' ? 'selected' : ''); ?>>
-                                                            Profesor</option>
-                                                        <option value="1" <?php echo ($rol == '1' ? 'selected' : ''); ?>>
-                                                            Administrador</option>
-                                                    </select>
+                                                    <?php
+                                                    $RolId = $_SESSION['usuario']['Rol_id'];
+
+                                                    if ($RolId == 4) {
+                                                        echo '<select class="form-control" name="rol" required>
+                                                                    <option ' . ($rol == '' ? 'selected' : '') . '>Elige una opción</option>
+                                                                    <option value="3" ' . ($rol == '3' ? 'selected' : '') . '>Estudiante</option>
+                                                                    <option value="2" ' . ($rol == '2' ? 'selected' : '') . '>Profesor</option>
+                                                                    <option value="1" ' . ($rol == '1' ? 'selected' : '') . '>Asistente</option>
+                                                                    <option value="4" ' . ($rol == '4' ? 'selected' : '') . '>Administrador</option>
+                                                              </select>';
+                                                    } else {
+                                                        echo '<select class="form-control" name="rol" required>
+                                                                    <option ' . ($rol == '' ? 'selected' : '') . '>Elige una opción</option>
+                                                                    <option value="3" ' . ($rol == '3' ? 'selected' : '') . '>Estudiante</option>
+                                                                    <option value="2" ' . ($rol == '2' ? 'selected' : '') . '>Profesor</option>
+                                                              </select>';
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -479,27 +524,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Sede</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control" name="rol" required>
+                                                <select class="form-control" name="sede" required>
                                                     <option <?php echo ($sede == '' ? 'selected' : ''); ?>>Elige una
                                                         opción</option>
-                                                    <option value="1" <?php echo ($sede == '1' ? 'selected' : ''); ?>>
+                                                    <?php
+                                                    $SedeId = $_SESSION['usuario']['Sede_Id'];
+                                                    $RolId = $_SESSION['usuario']['Rol_id'];
+
+                                                    if ($RolId == 4) {
+                                                        echo '<option value="1" ' . ($sede == '1' ? 'selected' : '') . '>
                                                         Chincha</option>
-                                                    <option value="2" <?php echo ($sede == '2' ? 'selected' : ''); ?>>
+                                                    <option value="2" ' . ($sede == '2' ? 'selected' : '') . '>
                                                         Cañete</option>
-                                                    <option value="3" <?php echo ($sede == '3' ? 'selected' : ''); ?>>
+                                                    <option value="3" ' . ($sede == '3' ? 'selected' : '') . '>
                                                         Pisco</option>
-                                                    <option value="4" <?php echo ($sede == '4' ? 'selected' : ''); ?>>
+                                                    <option value="4" ' . ($sede == '4' ? 'selected' : '') . '>
                                                         Ica</option>
-                                                    <option value="5" <?php echo ($sede == '5' ? 'selected' : ''); ?>>
+                                                    <option value="5" ' . ($sede == '5' ? 'selected' : '') . '>
                                                         Cajamarca</option>
-                                                    <option value="5" <?php echo ($sede == '6' ? 'selected' : ''); ?>>
-                                                        Arequipa</option>
+                                                    <option value="6" ' . ($sede == '6' ? 'selected' : '') . '>
+                                                        Arequipa</option>';
+                                                    } else {
+                                                        switch ($SedeId) {
+                                                            case 1:
+                                                                echo '<option value="1" ' . ($sede == '1' ? 'selected' : '') . '>Chincha</option>';
+                                                                break;
+                                                            case 2:
+                                                                echo '<option value="2" ' . ($sede == '2' ? 'selected' : '') . '>Cañete</option>';
+                                                                break;
+                                                            case 3:
+                                                                echo '<option value="3" ' . ($sede == '3' ? 'selected' : '') . '>Pisco</option>';
+                                                                break;
+                                                            case 4:
+                                                                echo '<option value="4" ' . ($sede == '4' ? 'selected' : '') . '>Ica</option>';
+                                                                break;
+                                                            case 5:
+                                                                echo '<option value="5" ' . ($sede == '5' ? 'selected' : '') . '>Cajamarca</option>';
+                                                                break;
+                                                            case 6:
+                                                                echo '<option value="6" ' . ($sede == '6' ? 'selected' : '') . '>Arequipa</option>';
+                                                                break;
+                                                        }
+                                                    }
+
+                                                    ?>
+
+
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mr-2" name="operaciones"
-                                        value="Actualizar">
+                                    <button type="submit" class="btn btn-primary mr-2" name="operaciones" value="Actualizar">
                                         Actualizar
                                     </button>
                                 </form>

@@ -85,7 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $mensaje = "❌ Error al registrar";
             }
         }
-
     }
 }
 ?>
@@ -122,10 +121,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img
-                        src="../../images/logo.png" class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img
-                        src="../../images/logosidebard.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="../dashboard/dashboard.php"><img src="../../images/logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../dashboard/dashboard.php"><img src="../../images/logosidebard.png" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -147,8 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                             ?>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
-                            aria-labelledby="profileDropdown">
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                             <a class="dropdown-item" href="../profile/profile.php">
                                 <i class="ti-settings text-primary"></i>
                                 Editar Perfil
@@ -160,8 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </li>
                 </ul>
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                    data-toggle="offcanvas">
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                     <span class="icon-menu"></span>
                 </button>
             </div>
@@ -178,8 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Usuarios</span>
                             <i class="menu-arrow"></i>
@@ -190,7 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./perfil-usuarios.php">Editar
                                         usuarios</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="./roles.php">Editar Rol</a>
+                                </li>
                                 <li class="nav-item"> <a class="nav-link" href="./gestion-usuarios.php">Gestión de
                                         usuarios</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="./lista-usuarios.php">Lista de
@@ -199,8 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false"
-                            aria-controls="#cursos">
+                        <a class="nav-link" data-toggle="collapse" href="#cursos" aria-expanded="false" aria-controls="#cursos">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Cursos</span>
                             <i class="menu-arrow"></i>
@@ -211,12 +205,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         Cursos</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="../cursos/lista-cursos.php">Lista de
                                         Cursos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../cursos/editar-cursos.php">Editar
+                                        Cursos</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false"
-                            aria-controls="#sedes">
+                        <a class="nav-link" data-toggle="collapse" href="#modulos" aria-expanded="false" aria-controls="#modulos">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Módulos</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="modulos">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/crear-modulos.php">Registrar
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/lista-modulos.php">Lista de
+                                        Módulos</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../modulos/editar-modulos.php">Editar
+                                        Módulos</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#matriculas" aria-expanded="false" aria-controls="#matriculas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Matrículas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="matriculas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/registro-matricula.php">Matricular
+                                        alumno</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/lista-matriculas.php">Lista Matriculas</a>
+                                </li>
+                                <li class="nav-item"> <a class="nav-link" href="../matriculas/editar-matriculas.php">Editar
+                                        Matriculas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#notas" aria-expanded="false" aria-controls="#notas">
+                            <i class="icon-layout menu-icon"></i>
+                            <span class="menu-title">Notas</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="notas">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="../notas/registrar-nota.php">Registrar Notas</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="../notas/lista-notas.php">Lista de Notas</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#sedes" aria-expanded="false" aria-controls="#sedes">
                             <i class="icon-layout menu-icon"></i>
                             <span class="menu-title">Sedes</span>
                             <i class="menu-arrow"></i>
@@ -309,8 +352,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
                                                 <div class="col-sm-9">
-                                                    <input type="date" class="form-control" name="fnacimiento"
-                                                        required />
+                                                    <input type="date" class="form-control" name="fnacimiento" />
                                                 </div>
                                             </div>
                                         </div>
@@ -323,9 +365,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Dirección</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Av. / Cl. / Jr. / Psje. / CP. / AH."
-                                                        name="direccion" />
+                                                    <input type="text" class="form-control" placeholder="Av. / Cl. / Jr. / Psje. / CP. / AH." name="direccion" />
                                                 </div>
                                             </div>
                                         </div>
@@ -382,8 +422,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Foto</label>
                                                 <div class="col-sm-9">
-                                                    <input type="file" class="form-control file-upload-info"
-                                                        name="foto">
+                                                    <input type="file" class="form-control file-upload-info" name="foto">
                                                 </div>
                                             </div>
                                         </div>
@@ -391,12 +430,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Rol de Usuario</label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control" name="rol" required>
+                                                    <?php
+                                                    $RolId = $_SESSION['usuario']['Rol_id'];
+
+                                                    if ($RolId == 4) {
+                                                        echo '<select class="form-control" name="rol" required>
+                                                                    <option>Elige una opción</option>
+                                                                    <option value="3">Estudiante</option>
+                                                                    <option value="2">Profesor</option>
+                                                                    <option value="1">Asistente</option>
+                                                                    <option value="4">Administrador</option>
+                                                            </select>
+                                                        ';
+                                                    } else {
+                                                        echo '<select class="form-control" name="rol" required>
                                                         <option>Elige una opción</option>
                                                         <option value="3">Estudiante</option>
                                                         <option value="2">Profesor</option>
-                                                        <option value="1">Administrador</option>
-                                                    </select>
+                                                         </select>
+                                                        ';
+                                                    }
+                                                    ?>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -416,7 +471,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                             while ($fila = $resultado->fetch_assoc()) {
                                                                 echo '<option value="' . $fila['Sede_Id'] . '">' . $fila['Sede_nombre'] . '</option>';
                                                             }
-
                                                         } else {
                                                             echo "No existe";
                                                         }
